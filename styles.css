@@ -167,7 +167,10 @@ and (max-device-width : 1024px)  {
   padding-top: 50px;
   width: 74%;
   padding-bottom: 50px;
+}
 
+canvas {
+  vertical-align: middle;
 }
 
 .work-display img {
@@ -180,7 +183,16 @@ and (max-device-width : 1024px)  {
   line-height: 1.8;
   padding-top: 15px;
   font-size: 1.1em;
-  text-align: left;  
+  text-align: left;   
+}
+
+.work-display span {
+  text-align: left;
+  vertical-align: middle;
+  padding-top: 10%;
+  line-height: 1.8;
+  padding-bottom: 2em;
+  font-size: 1.1em;
 }
 
 /* ------------------- Grid -------------------*/
@@ -714,10 +726,3 @@ nav .hamburger {
     transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1); }
 
 
-/* Game */
-
-canvas { 
-    margin-left: 350px;
-    margin-right: auto;
-    margin-top: 130px;
-}

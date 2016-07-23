@@ -4,14 +4,14 @@ var ctx = canvas.getContext("2d");
 
 // ball variables
 var x = canvas.width/2;
-var y = canvas.height-30;
+var y = canvas.height-16;
 var dx = 2;
 var dy = -2;
-var ballRadius = 10;
+var ballRadius = canvas.width/48;
 
 // paddle variables
-var paddleHeight = 10;
-var paddleWidth = 75;
+var paddleHeight = canvas.width/48;
+var paddleWidth = canvas.width/6.4;
 var paddleX = (canvas.width-paddleWidth)/2;
 
 // event variables
@@ -21,11 +21,11 @@ var leftPressed = false;
 // brick variables
 var brickRowCount = 3;
 var brickColumnCount = 5;
-var brickWidth = 75;
-var brickHeight = 20;
-var brickPadding = 10;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
+var brickWidth = canvas.width/6.4;
+var brickHeight = canvas.width/24;
+var brickPadding = canvas.width/48;
+var brickOffsetTop = canvas.width/16;
+var brickOffsetLeft = canvas.width/16;
 
 //score variables
 var score = 0;
@@ -75,13 +75,13 @@ function mouseMoveHandler(e){
 function drawScore(){
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
-	ctx.fillText("Score: "+score, 8, 20);
+	ctx.fillText("Score: "+score, 15, 15);
 } 
 
 function drawLives(){
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
-	ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+	ctx.fillText("Lives: "+lives, canvas.width-70, 15);
 }
 
 function drawBricks(){
@@ -165,12 +165,12 @@ function draw(){
 		else{
 			lives--;
 			if(!lives){
-				alert("Game over")
-					document.reload();
+				//alert("Game over");
+				document.location.reload();				
 			}
 			else{
 				x = canvas.width/2;
-				y = canvas.height-30;
+				y = canvas.height-16;
 				dx = 2;
 				dy = -2;
 				paddleX = (canvas.width-paddleWidth)/2;
