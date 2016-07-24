@@ -1,3 +1,5 @@
+//Pure javascript for breakout game
+
 // canvas variables
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -17,6 +19,8 @@ var paddleX = (canvas.width-paddleWidth)/2;
 // event variables
 var rightPressed = false;
 var leftPressed = false;
+var mouseX = 0;
+var canvasPos = getPosition(canvas);
 
 // brick variables
 var brickRowCount = 3;
@@ -65,11 +69,25 @@ function keyUpHandler(e){
 }
 
 function mouseMoveHandler(e){
-	var relativeX = e.clientX - canvas.offsetLeft;
-	if (relativeX > 0 && relativeX < canvas.width){
-		paddleX = relativeX - paddleWidth/2;
-	}
+	mouseX = e.clientX - canvasPos.x;
+	if (mouseX > 0 && mouseX < canvas.width){
+		paddleX = mouseX - paddleWidth/2;
+	}	
 }
+
+//mouse helper function
+function getPosition(el) {
+  var xPosition = 0;
+   
+  while (el) {
+    xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);    
+    el = el.offsetParent;
+  }
+  return {
+    x: xPosition,   
+  };
+}      
+
 
 //functions for bricks, score, ball, and paddle
 function drawScore(){
@@ -199,5 +217,53 @@ function draw(){
 	requestAnimationFrame(draw);
 }
 
-
 draw();
+
+
+
+///   Phaser framework breakoutgame
+var game = new Phaser.Game(480, 320, Phaser.AUTO, phaserGame, { 
+	preload: preload, create: create, update: update
+	});
+
+var ball;
+var paddle;
+
+function preload() {
+	game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+	game.scale.pageAlignhorizontally = true;
+	game.scale.pageAlignVertically = true;
+	game.stage.backgroundColor = '#eee';
+
+	game.load.image('ball', 'ball.png');
+	game.load.image('paddle', 'paddle.png');
+
+}
+
+function create() {
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+	game.physics.arcade.checkCollision.down = false;
+
+	ball = game.add.sprite(game.world.width*0.5, game.world.height-25, 'ball');
+	ball.anchor.set(0.5);
+	game.physics.enable(ball, Phaser.Physics.ARCADE);
+	ball.body.collideWorldBounds = true;
+	ball.body.bounce.set(1);
+	ball.body.velocity.set(150,-150);
+
+	paddle = game.add.sprite(game.world.width*0.5, game.world.height-5, 'paddle');
+    paddle.anchor.set(0.5,1);
+    game.physics.enable(paddle, Phaser.Physics.ARCADE);
+    paddle.body.immovable = true;
+}
+
+function update() {
+	game.physics.arcade.collide(ball,paddle);
+	paddle.x = game.input.x || game.world.width*0.5;
+
+	ball.checkWorldBounds = true;
+	ball.events.onOutOfBounds.add(function(){
+    	//alert('Game over!');
+    	location.reload();
+	}, this);	
+}

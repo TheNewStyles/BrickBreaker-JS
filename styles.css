@@ -171,6 +171,7 @@ and (max-device-width : 1024px)  {
 
 canvas {
   vertical-align: middle;
+  background-color: #eee;
 }
 
 .work-display img {
