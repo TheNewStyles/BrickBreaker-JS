@@ -228,6 +228,10 @@ var game = new Phaser.Game(480, 320, Phaser.AUTO, phaserGame, {
 
 var ball;
 var paddle;
+var bricksP;
+var newBrick;
+var brickInfo;
+
 
 function preload() {
 	game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
@@ -237,6 +241,7 @@ function preload() {
 
 	game.load.image('ball', 'ball.png');
 	game.load.image('paddle', 'paddle.png');
+	game.load.image('brick', 'brick.png');
 
 }
 
@@ -255,6 +260,8 @@ function create() {
     paddle.anchor.set(0.5,1);
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
     paddle.body.immovable = true;
+
+    initBricks();
 }
 
 function update() {
@@ -266,4 +273,32 @@ function update() {
     	//alert('Game over!');
     	location.reload();
 	}, this);	
+}
+
+function initBricks() {
+    brickInfo = {
+        width: 50,
+        height: 20,
+        count: {
+            row: 7,
+            col: 3
+        },
+        offset: {
+            top: 50,
+            left: 60
+        },
+        padding: 10
+    }
+    bricksP = game.add.group();
+    for(c=0; c<brickInfo.count.col; c++) {
+        for(r=0; r<brickInfo.count.row; r++) {
+            var brickX = (r*(brickInfo.width+brickInfo.padding))+brickInfo.offset.left;
+            var brickY = (c*(brickInfo.height+brickInfo.padding))+brickInfo.offset.top;
+            newBrick = game.add.sprite(brickX, brickY, 'brick');
+            game.physics.enable(newBrick, Phaser.Physics.ARCADE);
+            newBrick.body.immovable = true;
+            newBrick.anchor.set(0.5);
+            bricksP.add(newBrick);
+        }
+    }
 }

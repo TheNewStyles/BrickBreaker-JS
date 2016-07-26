@@ -169,11 +169,6 @@ and (max-device-width : 1024px)  {
   padding-bottom: 50px;
 }
 
-canvas {
-  vertical-align: middle;
-  background-color: #eee;
-}
-
 .work-display img {
   border-radius: 3%;
   overflow: hidden;
@@ -725,5 +720,13 @@ nav .hamburger {
     transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), -webkit-transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1);
     transition: top 0.12s 0.18s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.15s 0.42s cubic-bezier(0.215, 0.61, 0.355, 1); }
+
+
+
+/* Games */
+canvas {
+  vertical-align: middle;
+  background-color: #eee;  
+}
 
 
