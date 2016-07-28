@@ -49,6 +49,7 @@ for(c=0; c<brickColumnCount; c++){
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
+document.addEventListener("click", startButtonOnClick, false);
 
 function keyDownHandler(e){
 	if(e.keyCode == 39){
@@ -75,6 +76,10 @@ function mouseMoveHandler(e){
 	}	
 }
 
+function startButtonOnClick(e){
+	startGame();
+}
+
 //mouse helper function
 function getPosition(el) {
   var xPosition = 0;
@@ -93,13 +98,19 @@ function getPosition(el) {
 function drawScore(){
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
-	ctx.fillText("Score: "+score, 15, 15);
+	ctx.fillText("Score: "+score, 15, 20);
 } 
 
 function drawLives(){
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
-	ctx.fillText("Lives: "+lives, canvas.width-70, 15);
+	ctx.fillText("Lives: "+lives, canvas.width-70, 20);
+}
+
+function drawStartButton(){
+	ctx.font = "24px Arial";
+	ctx.fillStyle = "#0095DD";
+	ctx.fillText("START", canvas.width/2-40, canvas.height/2)
 }
 
 function drawBricks(){
@@ -163,7 +174,7 @@ function drawPaddle(){
 	ctx.closePath();
 }
 
-function draw(){
+function startGame(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBricks();
 	drawBall();
@@ -214,10 +225,16 @@ function draw(){
 	x += dx;
 	y += dy;
 
-	requestAnimationFrame(draw);
+	requestAnimationFrame(startGame);
 }
 
-draw();
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+drawBricks();
+drawBall();
+drawPaddle();
+drawScore();
+drawLives();
+drawStartButton();
 
 
 
@@ -283,7 +300,7 @@ function create() {
     lifeLostText.visible = false;
 
     //start button
-    startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'button', startGame, this, 1, 0, 2);
+    startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'button', startGamePhaser, this, 1, 0, 2);
     startButton.anchor.set(0.5);
 
 }
@@ -348,7 +365,7 @@ function ballHitBrick(ball, brick){
 	}
 
 	if(count_alive == 0){
-		aler('You won the game, congrats!');
+		alert('You won the game, congrats!');
 		location.reload();
 	}
 }
@@ -377,7 +394,7 @@ function ballHitPaddle(ball, paddle){
 	ball.body.velocity.x = -1*5*(paddle.x-ball.x);
 }
 
-function startGame() {
+function startGamePhaser() {
 	startButton.destroy();
 	ball.body.velocity.set(150, -150);
 	playing = true;
