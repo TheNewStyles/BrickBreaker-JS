@@ -232,7 +232,7 @@ and (max-device-width : 1024px)  {
 .grid-6 {
   float: left;
   width:100%;
-  padding: 0 1%;
+  padding: 0 0%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -729,3 +729,6 @@ canvas {
   background-color: #eee;  
 }
 
+#gameCanvas {
+  margin-bottom: 40px;
+}

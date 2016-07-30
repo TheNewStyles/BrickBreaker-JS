@@ -1,7 +1,7 @@
 ////////////////  Pure javascript for breakout game   //////////////// 
 
 // canvas variables
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("gameCanvas");
 var ctx = canvas.getContext("2d");
 
 // ball variables
