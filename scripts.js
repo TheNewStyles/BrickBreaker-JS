@@ -34,6 +34,8 @@ var brickOffsetLeft = canvas.width/16;
 //score variables
 var score = 0;
 var lives = 3;
+var startClicked = false;
+
 
 //creat brick array
 var bricks = [];
@@ -76,8 +78,14 @@ function mouseMoveHandler(e){
 	}	
 }
 
-function startButtonOnClick(e){
-	startGame();
+
+// TODO figure out return statement so you only can click once
+function startButtonOnClick(e){	
+	if(startClicked){
+		return;
+	}
+	startClicked = true;
+	startGame();	
 }
 
 //mouse helper function
@@ -243,6 +251,8 @@ var game = new Phaser.Game(480, 320, Phaser.AUTO, phaserGame, {
 	preload: preload, create: create, update: update
 	});
 
+
+//variables
 var ball;
 var paddle;
 var bricksPhaser;
@@ -257,7 +267,7 @@ var playing = false;
 var startButton;
 
 function preload() {
-	game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 	game.scale.pageAlignhorizontally = true;
 	game.scale.pageAlignVertically = true;
 	game.stage.backgroundColor = '#eee';
@@ -317,6 +327,7 @@ function update() {
 }
 
 function initBricks() {
+    
     brickInfo = {
         width: 50,
         height: 20,
