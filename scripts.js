@@ -48,10 +48,19 @@ for(c=0; c<brickColumnCount; c++){
 }
 
 // handlers - listeners
+var phaserGameCanvas = document.getElementById('gameCanvas');
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
-document.addEventListener("click", startButtonOnClick, false);
+//document.addEventListener("click", startButtonOnClick, false);
+phaserGameCanvas.onclick = function startButtonOnClick(e){	
+	if(startClicked){
+		return;
+	}
+	startClicked = true;
+	startGame();	
+}
 
 function keyDownHandler(e){
 	if(e.keyCode == 39){
@@ -76,16 +85,6 @@ function mouseMoveHandler(e){
 	if (mouseX > 0 && mouseX < canvas.width){
 		paddleX = mouseX - paddleWidth/2;
 	}	
-}
-
-
-// TODO figure out return statement so you only can click once
-function startButtonOnClick(e){	
-	if(startClicked){
-		return;
-	}
-	startClicked = true;
-	startGame();	
 }
 
 //mouse helper function
