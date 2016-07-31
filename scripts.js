@@ -104,19 +104,19 @@ function getPosition(el) {
 //functions for bricks, score, ball, and paddle
 function drawScore(){
 	ctx.font = "16px Arial";
-	ctx.fillStyle = "#0095DD";
+	ctx.fillStyle = "#3AAFB9";
 	ctx.fillText("Score: "+score, 15, 20);
 } 
 
 function drawLives(){
 	ctx.font = "16px Arial";
-	ctx.fillStyle = "#0095DD";
+	ctx.fillStyle = "#3AAFB9";
 	ctx.fillText("Lives: "+lives, canvas.width-70, 20);
 }
 
 function drawStartButton(){
 	ctx.font = "24px Arial";
-	ctx.fillStyle = "#0095DD";
+	ctx.fillStyle = "#3AAFB9";
 	ctx.fillText("START", canvas.width/2-40, canvas.height/2)
 }
 
@@ -132,7 +132,7 @@ function drawBricks(){
 				//create each brick
 				ctx.beginPath();
 				ctx.rect(brickX,brickY,brickWidth, brickHeight);
-				ctx.fillStyle = "#0095DD";
+				ctx.fillStyle = "#3AAFB9";
 				ctx.fill();
 				ctx.closePath();
 			}			
@@ -168,7 +168,7 @@ function collisionDetection(){
 function drawBall(){
 	ctx.beginPath();
 	ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-	ctx.fillStyle = "#0095DD";
+	ctx.fillStyle = "#3AAFB9";
 	ctx.fill();
 	ctx.closePath();
 }
@@ -176,7 +176,7 @@ function drawBall(){
 function drawPaddle(){
 	ctx.beginPath();
 	ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-	ctx.fillStyle = "#0095DD";
+	ctx.fillStyle = "#3AAFB9";
 	ctx.fill();
 	ctx.closePath();
 }
@@ -269,7 +269,7 @@ function preload() {
 	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 	game.scale.pageAlignhorizontally = true;
 	game.scale.pageAlignVertically = true;
-	game.stage.backgroundColor = '#eee';
+	game.stage.backgroundColor = '#093A3E';
 
 	game.load.image('ball', 'ball.png');
 	game.load.image('paddle', 'paddle.png');
@@ -301,10 +301,10 @@ function create() {
     initBricks();
 
     //score/lives
-    scoreText = game.add.text(5, 5, 'Points: 0', {font: '18px Arial', fill: '#0095DD'});
-    livesText = game.add.text(game.world.width-5, 5, 'Lives: '+livesPhaser, {font: '18px Arial', fill: '#0095DD'});
+    scoreText = game.add.text(5, 5, 'Points: 0', {font: '18px Arial', fill: '#3AAFB9'});
+    livesText = game.add.text(game.world.width-5, 5, 'Lives: '+livesPhaser, {font: '18px Arial', fill: '#3AAFB9'});
     livesText.anchor.set(1,0);
-    lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.5, 'Life lost, click to continue', { font: '18px Arial', fill: '#0095DD' });
+    lifeLostText = game.add.text(game.world.width*0.5, game.world.height*0.5, 'Life lost, click to continue', { font: '18px Arial', fill: '#3AAFB9' });
     lifeLostText.anchor.set(0.5);
     lifeLostText.visible = false;
 
